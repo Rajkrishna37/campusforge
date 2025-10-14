@@ -22,15 +22,17 @@ public class AdminLauncher extends JFrame {
 
         JButton homeBtn = new JButton("Home");
         JButton searchBtn = new JButton("Search Users");
+        JButton manageBtn = new JButton("Manage Users");
         JButton logoutBtn = new JButton("Logout");
 
-        for (JButton b : new JButton[]{homeBtn, searchBtn, logoutBtn}) {
+        for (JButton b : new JButton[]{homeBtn, searchBtn, manageBtn, logoutBtn}) {
             b.setFocusPainted(false);
             b.setBackground(Color.WHITE);
         }
 
         navPanel.add(homeBtn);
         navPanel.add(searchBtn);
+        navPanel.add(manageBtn);
         navPanel.add(logoutBtn);
         add(navPanel, BorderLayout.NORTH);
 
@@ -40,13 +42,16 @@ public class AdminLauncher extends JFrame {
 
         AdminHomePanel homePanel = new AdminHomePanel();
         AdminSearchPanel searchPanel = new AdminSearchPanel();
+        ManageUsersPanel managePanel = new ManageUsersPanel();
 
         container.add(homePanel, "Home");
         container.add(searchPanel, "Search");
+        container.add(managePanel, "Manage");
 
         // ===== Button Actions =====
         homeBtn.addActionListener(e -> switchPanel("Home"));
         searchBtn.addActionListener(e -> switchPanel("Search"));
+        manageBtn.addActionListener(e -> switchPanel("Manage"));
         logoutBtn.addActionListener(e -> {
             dispose();
             new LoginGUI(); // return to login page
